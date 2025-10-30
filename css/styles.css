@@ -1,0 +1,25 @@
+body {
+  background: #f8f9fa;
+}
+
+.navbar-brand {
+  font-size: 1.2rem;
+}
+
+.card {
+  border-radius: 12px;
+}
+
+.list-group-item {
+  font-family: "Courier New", monospace;
+}
+
+.console-box {
+  background: #000;
+  color: #00ff88;
+  font-family: monospace;
+  height: 300px;
+  overflow-y: auto;
+  padding: 1rem;
+  border-radius: 10px;
+}

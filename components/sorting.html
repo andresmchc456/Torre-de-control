@@ -1,0 +1,24 @@
+<!-- Panel de ordenamiento -->
+
+<section class="component">
+  <h2>⚙️ Ordenamiento de vuelos</h2>
+  <form id="sortForm">
+    <label>Cola a ordenar:
+      <select id="queueSelect">
+        <option value="landing">Aterrizaje</option>
+        <option value="takeoff">Despegue</option>
+      </select>
+    </label>
+    <label>Algoritmo:
+      <select id="algorithmSelect">
+        <option value="bubble">Burbuja</option>
+        <option value="insertion">Inserción</option>
+        <option value="selection">Selección</option>
+        <option value="quick">QuickSort</option>
+      </select>
+    </label>
+    <button type="submit">Ordenar</button>
+  </form>
+
+  <div id="sortOutput" class="console-box"></div>
+</section>

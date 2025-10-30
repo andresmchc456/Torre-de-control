@@ -1,0 +1,30 @@
+<!-- Formulario para crear vuelos -->
+
+<div class="card shadow">
+  <div class="card-body">
+    <h4 class="card-title mb-3">✈️ Crear nuevo vuelo</h4>
+    <form id="flightForm" class="row g-3">
+      <div class="col-md-4">
+        <label class="form-label">ID de vuelo</label>
+        <input type="text" id="flightId" class="form-control" required>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Tipo</label>
+        <select id="flightType" class="form-select">
+          <option>Emergencia</option>
+          <option>Combustible</option>
+          <option>VIP</option>
+          <option>Carga</option>
+          <option>Comercial</option>
+        </select>
+      </div>
+      <div class="col-md-4">
+        <label class="form-label">Combustible (%)</label>
+        <input type="number" id="fuel" class="form-control" min="1" max="100" required>
+      </div>
+      <div class="col-12 text-end">
+        <button type="submit" class="btn btn-primary">Agregar vuelo</button>
+      </div>
+    </form>
+  </div>
+</div>
