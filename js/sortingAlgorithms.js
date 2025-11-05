@@ -1,9 +1,10 @@
-// Algoritmos de ordenamiento
+// Algoritmos de ordenamiento (corregidos y estables)
 
 export const sortingAlgorithms = {
   bubble(list, output) {
     const arr = [...list];
-    let log = msg => (output.innerHTML += `<p>${msg}</p>`);
+    output.innerHTML += `<p>🔁 Iniciando Burbuja...</p>`;
+    const log = msg => (output.innerHTML += `<p>${msg}</p>`);
 
     for (let i = 0; i < arr.length - 1; i++) {
       for (let j = 0; j < arr.length - i - 1; j++) {
@@ -19,24 +20,27 @@ export const sortingAlgorithms = {
 
   insertion(list, output) {
     const arr = [...list];
-    let log = msg => (output.innerHTML += `<p>${msg}</p>`);
+    output.innerHTML += `<p>🔁 Iniciando Inserción...</p>`;
+    const log = msg => (output.innerHTML += `<p>${msg}</p>`);
 
     for (let i = 1; i < arr.length; i++) {
-      let key = arr[i];
+      const key = arr[i];
       let j = i - 1;
       while (j >= 0 && priorityValue(arr[j].type) < priorityValue(key.type)) {
         arr[j + 1] = arr[j];
+        log(`Moviendo ${arr[j + 1].id} a la posición ${j + 1}`);
         j--;
-        log(`Moviendo ${arr[j + 1].id}`);
       }
       arr[j + 1] = key;
+      log(`Insertando ${key.id} en la posición ${j + 1}`);
     }
     return arr;
   },
 
   selection(list, output) {
     const arr = [...list];
-    let log = msg => (output.innerHTML += `<p>${msg}</p>`);
+    output.innerHTML += `<p>🔁 Iniciando Selección...</p>`;
+    const log = msg => (output.innerHTML += `<p>${msg}</p>`);
 
     for (let i = 0; i < arr.length; i++) {
       let max = i;
@@ -44,24 +48,37 @@ export const sortingAlgorithms = {
         if (priorityValue(arr[j].type) > priorityValue(arr[max].type)) max = j;
       }
       if (max !== i) {
-        [arr[i], arr[max]] = [arr[max], arr[i]];
         log(`Intercambio: ${arr[i].id} <-> ${arr[max].id}`);
+        [arr[i], arr[max]] = [arr[max], arr[i]];
       }
     }
     return arr;
   },
 
   quick(list, output) {
-    let log = msg => (output.innerHTML += `<p>${msg}</p>`);
+    output.innerHTML += `<p>🔁 Iniciando QuickSort...</p>`;
+    const log = msg => (output.innerHTML += `<p>${msg}</p>`);
 
     function quickSort(arr) {
       if (arr.length <= 1) return arr;
       const pivot = arr[arr.length - 1];
-      const left = arr.filter(f => priorityValue(f.type) > priorityValue(pivot.type));
-      const right = arr.filter(f => priorityValue(f.type) < priorityValue(pivot.type));
-      log(`Pivote: ${pivot.id}`);
-      return [...quickSort(left), pivot, ...quickSort(right)];
+      const pVal = priorityValue(pivot.type);
+      log(`Pivote: ${pivot.id} (${pivot.type})`);
+      const rest = arr.slice(0, -1);
+      const left = [];
+      const equal = [];
+      const right = [];
+
+      rest.forEach(f => {
+        const v = priorityValue(f.type);
+        if (v > pVal) left.push(f);
+        else if (v === pVal) equal.push(f);
+        else right.push(f);
+      });
+
+      return [...quickSort(left), ...equal, pivot, ...quickSort(right)];
     }
+
     return quickSort([...list]);
   }
 };
