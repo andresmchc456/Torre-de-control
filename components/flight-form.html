@@ -18,6 +18,16 @@
           <option>Comercial</option>
         </select>
       </div>
+
+      <!-- Nuevo campo: Operación (Aterrizaje / Despegue) -->
+      <div class="col-md-4">
+        <label class="form-label">Operación</label>
+        <select id="operation" class="form-select">
+          <option value="">(Auto por tipo)</option>
+          <option value="Aterrizaje">Aterrizaje</option>
+          <option value="Despegue">Despegue</option>
+        </select>
+      </div>
       <div class="col-md-4">
         <label class="form-label">Combustible (%)</label>
         <input type="number" id="fuel" class="form-control" min="1" max="100" required>

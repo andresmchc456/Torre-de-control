@@ -11,13 +11,15 @@ export function init() {
 
     let node = controller.landingQueue.front;
     while (node) {
-      landingList.innerHTML += `<li class="list-group-item">${node.value.id} (${node.value.type}) - ${node.value.fuel}%</li>`;
+      const op = node.value.operation ? ` - ${node.value.operation}` : "";
+      landingList.innerHTML += `<li class="list-group-item">${node.value.id} (${node.value.type}) - ${node.value.fuel}%${op}</li>`;
       node = node.next;
     }
 
     node = controller.takeoffQueue.front;
     while (node) {
-      takeoffList.innerHTML += `<li class="list-group-item">${node.value.id} (${node.value.type}) - ${node.value.fuel}%</li>`;
+      const op = node.value.operation ? ` - ${node.value.operation}` : "";
+      takeoffList.innerHTML += `<li class="list-group-item">${node.value.id} (${node.value.type}) - ${node.value.fuel}%${op}</li>`;
       node = node.next;
     }
   };

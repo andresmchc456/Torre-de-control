@@ -1,9 +1,10 @@
 // Definición de LinkedQueue, Stack, Flight
 export class Flight {
-  constructor(id, type, fuel) {
+  constructor(id, type, fuel /*, operation opcional */ , operation) {
     this.id = id;
     this.type = type;
     this.fuel = fuel;
+    this.operation = operation || ""; // <-- nuevo campo (Aterrizaje/Despegue o vacío)
     this.timestamp = Date.now();
   }
 }
