@@ -23,13 +23,17 @@
           <li class="nav-item"><a class="nav-link" data-view="queues" href="#">Colas</a></li>
           <li class="nav-item"><a class="nav-link" data-view="sorting" href="#">Ordenar</a></li>
           <li class="nav-item"><a class="nav-link" data-view="history" href="#">Historial</a></li>
-          <li class="nav-item"><a class="nav-link" data-view="console" href="#">Consola</a></li>
         </ul>
       </div>
     </div>
   </nav>
 
   <!-- Contenedor dinámico -->
+  <!--
+    Aquí se carga el contenido de las vistas (componentes/*.html) de forma dinámica
+    mediante `js/app.js` y `js/router.js`. El elemento con id="app" actúa como punto
+    de montaje para las vistas (formulario, colas, ordenar, historial).
+  -->
   <main id="app" class="container py-4">
     <!-- Aquí se cargarán los componentes -->
   </main>

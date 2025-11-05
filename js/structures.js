@@ -1,5 +1,11 @@
 // Definición de LinkedQueue, Stack, Flight
 export class Flight {
+  // Representa un vuelo con atributos básicos usados por las colas y ordenamiento
+  // - id: string único
+  // - type: prioridad/tipo (Emergencia, Combustible, VIP, Carga, Comercial)
+  // - fuel: porcentaje o unidades restantes
+  // - operation: "Aterrizaje" o "Despegue" (opcional, puede quedar vacío)
+  // - timestamp: marca temporal para desempates FIFO
   constructor(id, type, fuel /*, operation opcional */ , operation) {
     this.id = id;
     this.type = type;

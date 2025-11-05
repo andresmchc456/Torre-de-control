@@ -1,14 +1,17 @@
-import { controller } from "./controller.js"; // nuevo: usar logger central
+import { controller } from "./controller.js"; // Usamos controller.log como logger central si está disponible
 
 export const sortingAlgorithms = {
+  // Burbuja: modo paso a paso con logs de comparaciones y swaps
   bubble(list) {
     const arr = [...list];
     const log = (msg) => (controller.log ? controller.log(msg) : console.log(msg));
     log(`ORDEN-INICIO: algoritmo=Burbuja tamaño=${arr.length}`);
     for (let i = 0; i < arr.length - 1; i++) {
       for (let j = 0; j < arr.length - i - 1; j++) {
+        // Log: índices comparados, id, tipo y fuel
         log(`COMP: i=${j} (${arr[j].id}:${arr[j].type} f=${arr[j].fuel}%) vs j=${j+1} (${arr[j+1].id}:${arr[j+1].type} f=${arr[j+1].fuel}%)`);
         if (priorityValue(arr[j].type, arr[j].fuel, arr[j].timestamp) < priorityValue(arr[j+1].type, arr[j+1].fuel, arr[j+1].timestamp)) {
+          // Swap cuando el elemento de la derecha tiene mayor prioridad
           [arr[j], arr[j+1]] = [arr[j+1], arr[j]];
           log(`SWAP: i=${j} <-> j=${j+1}. Lista: [${arr.map(f=>f.id).join(", ")}]`);
         } else {
@@ -20,6 +23,7 @@ export const sortingAlgorithms = {
     return arr;
   },
 
+  // Inserción: modo paso a paso con logs de movimientos e inserciones
   insertion(list) {
     const arr = [...list];
     const log = (msg) => (controller.log ? controller.log(msg) : console.log(msg));
@@ -39,6 +43,7 @@ export const sortingAlgorithms = {
     return arr;
   },
 
+  // Selección: busca el máximo (mayor prioridad) y lo coloca al frente de la sublista
   selection(list) {
     const arr = [...list];
     const log = (msg) => (controller.log ? controller.log(msg) : console.log(msg));
@@ -60,6 +65,7 @@ export const sortingAlgorithms = {
     return arr;
   },
 
+  // QuickSort: particiona por pivote; se loguea pivote y comparaciones
   quick(list) {
     const log = (msg) => (controller.log ? controller.log(msg) : console.log(msg));
     log(`ORDEN-INICIO: algoritmo=QuickSort tamaño=${list.length}`);
@@ -86,6 +92,10 @@ export const sortingAlgorithms = {
   }
 };
 
+// priorityValue: convierte tipo/fuel/timestamp en un valor numérico para comparar prioridades
+// - base: valor por tipo (Emergencia=5..Comercial=1)
+// - desempate: para "Combustible" se prioriza menor fuel (100 - fuel)
+// - timestamp resta para favorecer solicitudes más antiguas en caso de empate
 function priorityValue(type, fuel = 100, timestamp = 0) {
   const map = { "Emergencia": 5, "Combustible": 4, "VIP": 3, "Carga": 2, "Comercial": 1 };
   const base = map[type] || 0;
